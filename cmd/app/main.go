@@ -16,5 +16,6 @@ func main() {
 		ConfigureServiceLocator().
 		ConfigureRoutes().
 		AfterInitializationEvents().
+		ResolveContainer().
 		End()
 }

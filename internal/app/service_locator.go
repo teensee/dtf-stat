@@ -26,6 +26,8 @@ func (s *ServiceLocator) Get(alias string) any {
 }
 
 func (s *ServiceLocator) Clear() {
+	log.Println("[DI] Clear container")
+
 	s.services = make(map[string]any)
 }
 

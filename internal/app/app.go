@@ -72,6 +72,10 @@ func (a *App) AfterInitializationEvents() *App {
 		log.Fatal(err)
 	}
 
+	return a
+}
+
+func (a *App) ResolveContainer() *App {
 	a.DI.Clear()
 
 	return a
