@@ -19,9 +19,10 @@ func main() {
 		AfterInitializationEvents().
 		ConfigureCli()
 
+	cliApp := kernel.DI.Get("cli").(*cli.App)
+
 	kernel.ResolveContainer()
 
-	cliApp := kernel.DI.Get("cli").(*cli.App)
 	err := cliApp.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
