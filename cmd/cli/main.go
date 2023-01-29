@@ -17,8 +17,9 @@ func main() {
 		ConfigureDatabase().
 		ConfigureServiceLocator().
 		AfterInitializationEvents().
-		ResolveContainer().
 		ConfigureCli()
+
+	kernel.ResolveContainer()
 
 	cliApp := kernel.DI.Get("cli").(*cli.App)
 	err := cliApp.Run(os.Args)
