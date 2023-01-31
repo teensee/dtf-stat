@@ -45,6 +45,7 @@ func (h *DtfUserHandler) loadAllUsers(from int) {
 		reqLog := model.NewUserRequestLog(i, requestUrl, resp.StatusCode, time.Now(), string(b))
 
 		h.db.Save(reqLog)
+		resp.Body.Close()
 
 		if err != nil {
 			log.Println(err)
@@ -53,13 +54,15 @@ func (h *DtfUserHandler) loadAllUsers(from int) {
 
 		var dtfUser dto.DtfUser
 		json.Unmarshal(b, &dtfUser)
-		_ = resp.Body.Close()
 
 		entity := model.NewDtfUserFromDto(dtfUser)
 
 		h.db.Save(entity)
 		log.Printf("Saved %d user", entity.DtfUid)
 		time.Sleep(335)
+
+		_ = reqLog
+		_ = entity
 	}
 }
 
